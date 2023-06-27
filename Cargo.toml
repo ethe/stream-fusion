@@ -1,0 +1,32 @@
+[package]
+name = "stream-fusion"
+version = "0.1.0"
+edition = "2021"
+license-file = "LICENSE"
+description = "fuse stream-like async IO and computation"
+repository = "https://github.com/ethe/stream-fusion"
+
+[dependencies]
+futures-lite = "1"
+futures-util = "0.3"
+tokio = { version = "1", default-features = false, features = ["rt"] }
+
+[dev-dependencies]
+futures-lite = "1"
+tokio = { version = "1", features = ["full"] }
+criterion = { version = "0.5", features = [
+    "html_reports",
+    "async_tokio",
+    "async",
+] }
+rayon = "1"
+
+[[bench]]
+name = "vs_tokio_rayon"
+harness = false
+
+[profile.bench]
+opt-level = 3
+lto = "thin"
+codegen-units = 16
+debug = true
