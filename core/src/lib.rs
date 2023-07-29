@@ -9,6 +9,6 @@ pub mod stream;
 pub mod prelude {
     pub use crate::{
         consumer::{Consumer, ConsumerExt},
-        stream::{ext::StreamExt, FusionStream, IntoFusion, Stream},
+        stream::{ext::StreamExt, IntoFusion, IteratorStream, Stream},
     };
 }

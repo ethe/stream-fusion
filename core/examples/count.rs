@@ -1,4 +1,4 @@
-use stream_fusion::prelude::*;
+use fusion_core::prelude::*;
 
 fn main() {
     spin_on::spin_on(async {

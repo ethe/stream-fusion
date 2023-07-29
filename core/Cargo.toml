@@ -1,0 +1,18 @@
+[package]
+name = "fusion-core"
+version = "0.0.0"
+edition = "2021"
+license-file = "LICENSE"
+description = "fuse async stream and computation"
+repository = "https://github.com/ethe/stream-fusion"
+
+[dependencies]
+pin-project-lite = "0.2"
+futures-core = "0.3"
+
+[dev-dependencies]
+spin_on = "0.1"
+
+[features]
+std = []
+nightly = []

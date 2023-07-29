@@ -58,18 +58,19 @@ pub trait IntoFusion {
 }
 
 pin_project! {
-    pub struct FusionStream<I: Iterator> {
+    #[derive(Debug)]
+    pub struct IteratorStream<I> {
         iterator: I,
     }
 }
 
-impl<I: Iterator> From<I> for FusionStream<I> {
+impl<I: Iterator> From<I> for IteratorStream<I> {
     fn from(value: I) -> Self {
         Self { iterator: value }
     }
 }
 
-impl<I: Iterator> Stream for FusionStream<I> {
+impl<I: Iterator> Stream for IteratorStream<I> {
     type Item = I::Item;
 
     fn poll_next(self: Pin<&mut Self>, _: &mut Context<'_>) -> Poll<Step<Self::Item>> {
@@ -85,7 +86,7 @@ impl<I: Iterator> Stream for FusionStream<I> {
 }
 
 impl<I: Iterator> IntoFusion for I {
-    type Stream = FusionStream<I>;
+    type Stream = IteratorStream<I>;
 
     fn into_fusion(self) -> Self::Stream {
         self.into()
